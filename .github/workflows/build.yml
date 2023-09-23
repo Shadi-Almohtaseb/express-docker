@@ -27,3 +27,11 @@ jobs:
         run: docker build . --file Dockerfile --tag ghcr.io/shadi-almohtaseb/express-docker:${{ steps.image_version.outputs.gitsha }}
       - name: Publish the Docker image
         run: docker push ghcr.io/shadi-almohtaseb/express-docker:${{ steps.image_version.outputs.gitsha }}
+      - name: configure docker host
+        uses: shadi-almohtaseb/configure-docker-host@v1
+        with:
+          host: ${{ secrets.DOCKER_HOST }}
+          user: ${{ secrets.DOCKER_USER }}
+          ssh_private_key: ${{ secrets.DEPLOYMENT_KEY }}
+      - name: Deploy to production
+        run: docker compose -f docker-compose.prod.yml up -d
