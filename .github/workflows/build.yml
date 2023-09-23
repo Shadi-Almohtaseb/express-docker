@@ -28,7 +28,7 @@ jobs:
       - name: Publish the Docker image
         run: docker push ghcr.io/shadi-almohtaseb/express-docker:${{ steps.image_version.outputs.gitsha }}
       - name: configure docker host
-        uses: shadi-almohtaseb/configure-docker-host@v1
+        uses: Shadi-Almohtaseb/configure-docker-host@v1
         with:
           host: ${{ secrets.DOCKER_HOST }}
           user: ${{ secrets.DOCKER_USER }}
