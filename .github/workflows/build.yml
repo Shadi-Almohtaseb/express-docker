@@ -30,8 +30,8 @@ jobs:
       - name: configure docker host
         uses: khaledez/configure-docker-host@v1
         with:
-          host: ${{ secrets.DOCKER_HOST }}
-          user: ${{ secrets.DOCKER_USER }}
+          host: 18.170.38.203
+          user: github
           ssh_private_key: ${{ secrets.DEPLOYMENT_KEY }}
       - name: Deploy to production
         run: docker compose -f docker-compose.prod.yml up -d
