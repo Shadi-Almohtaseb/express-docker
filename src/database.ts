@@ -29,7 +29,6 @@ export class DatabaseHandler {
 	}
 }
 
-
 export async function configureDB(): Promise<DatabaseHandler> {
 	const dbHandler = new DatabaseHandler(process.env.DB_HOST!,
 		process.env.DB_NAME!,
