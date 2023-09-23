@@ -17,7 +17,7 @@ services:
     restart: always
 
   app:
-    image: ghcr.io/shadi-almohtaseb/express-docker:latest
+    image: ghcr.io/shadi-almohtaseb/express-docker:$GIT_VERSION
     restart: always
     build: .
     environment:
