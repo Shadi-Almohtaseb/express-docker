@@ -17,7 +17,6 @@ export class DatabaseHandler {
 			entities: [User]
 		})
 	}
-
 	async init(inTest: boolean) {
 		await this.datasource.initialize();
 		await this.datasource.synchronize(inTest);
