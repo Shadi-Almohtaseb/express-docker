@@ -28,10 +28,15 @@ jobs:
       - name: Publish the Docker image
         run: docker push ghcr.io/shadi-almohtaseb/express-docker:${{ steps.image_version.outputs.gitsha }}
       - name: configure docker host
-        uses: Shadi-Almohtaseb/configure-docker-host@v1
+        uses: shadi-almohtaseb/configure-docker-host@v1
         with:
           host: ${{ secrets.DOCKER_HOST }}
           user: ${{ secrets.DOCKER_USER }}
           ssh_private_key: ${{ secrets.DEPLOYMENT_KEY }}
       - name: Deploy to production
         run: docker compose -f docker-compose.prod.yml up -d
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      - name: print logs
+        if: always()
+        run: docker compose logs
